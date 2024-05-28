@@ -1,0 +1,1812 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenApi specification - Ziedzaa",
+    "description": "OpenApi documentation for Spring Security",
+    "termsOfService": "Terms of service",
+    "contact": {
+      "name": "Ziedzaa",
+      "url": "https://some-url.com",
+      "email": "ziededucation@gmail.com"
+    },
+    "license": {
+      "name": "Licence name",
+      "url": "https://some-url.com"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9090/api/v1",
+      "description": "Local ENV"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/structures": {
+      "post": {
+        "tags": [
+          "Structure"
+        ],
+        "operationId": "saveStructure",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StructureRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projets": {
+      "get": {
+        "tags": [
+          "Projet"
+        ],
+        "operationId": "findAllProjetsByUserStructure",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseProjetResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Projet"
+        ],
+        "operationId": "saveProjet",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjetRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/factures": {
+      "post": {
+        "tags": [
+          "Facture"
+        ],
+        "operationId": "createFacture",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FactureRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FactureResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contrats": {
+      "post": {
+        "tags": [
+          "Contrat"
+        ],
+        "operationId": "createContrat",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContratRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/unlock-account": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "unlockAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthenticationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/lock-account": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "lockAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthenticationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/grant-admin": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "grantAdminRole",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthenticationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/authenticate": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "authenticate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthenticationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/appels-offres": {
+      "get": {
+        "tags": [
+          "Appel Offre"
+        ],
+        "operationId": "findAllAppelOffresByUserStructure",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseAppelOffreResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Appel Offre"
+        ],
+        "operationId": "saveAppelOffre",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppelOffreRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/appels-offres/{appelOffreId}/{status}": {
+      "patch": {
+        "tags": [
+          "Appel Offre"
+        ],
+        "operationId": "updateStatus",
+        "parameters": [
+          {
+            "name": "appelOffreId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "status",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/structures/{structureId}": {
+      "get": {
+        "tags": [
+          "Structure"
+        ],
+        "operationId": "findStructureById",
+        "parameters": [
+          {
+            "name": "structureId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StructureResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/structures/all": {
+      "get": {
+        "tags": [
+          "Structure"
+        ],
+        "operationId": "findAllStructures",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StructureResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projets/{projet-id}": {
+      "get": {
+        "tags": [
+          "Projet"
+        ],
+        "operationId": "findProjetById",
+        "parameters": [
+          {
+            "name": "projet-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjetResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projets/all": {
+      "get": {
+        "tags": [
+          "Projet"
+        ],
+        "operationId": "findAllProjets",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseProjetResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/factures/{id}": {
+      "get": {
+        "tags": [
+          "Facture"
+        ],
+        "operationId": "getFactureById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FactureResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/factures/structure": {
+      "get": {
+        "tags": [
+          "Facture"
+        ],
+        "operationId": "getFacturesByStructureId",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseFactureResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/factures/projet/{projetId}": {
+      "get": {
+        "tags": [
+          "Facture"
+        ],
+        "operationId": "getFacturesByProjetId",
+        "parameters": [
+          {
+            "name": "projetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseFactureResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/factures/contrat/{contratId}": {
+      "get": {
+        "tags": [
+          "Facture"
+        ],
+        "operationId": "getFacturesByContratId",
+        "parameters": [
+          {
+            "name": "contratId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseFactureResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/factures/appelOffre/{appelOffreId}": {
+      "get": {
+        "tags": [
+          "Facture"
+        ],
+        "operationId": "getFacturesByAppelOffreId",
+        "parameters": [
+          {
+            "name": "appelOffreId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseFactureResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contrats/{id}": {
+      "get": {
+        "tags": [
+          "Contrat"
+        ],
+        "operationId": "getContratById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContratResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contrats/structure": {
+      "get": {
+        "tags": [
+          "Contrat"
+        ],
+        "operationId": "getContratsByStructure",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseContratResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contrats/projet/{projetId}": {
+      "get": {
+        "tags": [
+          "Contrat"
+        ],
+        "operationId": "getContratsByProjetId",
+        "parameters": [
+          {
+            "name": "projetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseContratResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contrats/appelOffre/{appelOffreId}": {
+      "get": {
+        "tags": [
+          "Contrat"
+        ],
+        "operationId": "getContratsByAppelOffreId",
+        "parameters": [
+          {
+            "name": "appelOffreId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseContratResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/activate-account": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "confirm",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/appels-offres/{appelOffreId}": {
+      "get": {
+        "tags": [
+          "Appel Offre"
+        ],
+        "operationId": "findAppelOffreById",
+        "parameters": [
+          {
+            "name": "appelOffreId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppelOffreResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Appel Offre"
+        ],
+        "operationId": "deleteAppelOffre",
+        "parameters": [
+          {
+            "name": "appelOffreId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/appels-offres/byProjet/{projetId}": {
+      "get": {
+        "tags": [
+          "Appel Offre"
+        ],
+        "operationId": "findAllAppelOffresByProjetId",
+        "parameters": [
+          {
+            "name": "projetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseAppelOffreResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/appels-offres/all": {
+      "get": {
+        "tags": [
+          "Appel Offre"
+        ],
+        "operationId": "findAllAppelOffres",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseAppelOffreResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projets/{projetId}": {
+      "delete": {
+        "tags": [
+          "Projet"
+        ],
+        "operationId": "deleteProjet",
+        "parameters": [
+          {
+            "name": "projetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "StructureRequest": {
+        "required": [
+          "descriptionRequestDto",
+          "titreRequestDto"
+        ],
+        "type": "object",
+        "properties": {
+          "idRequestDto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "referenceRequestDto": {
+            "type": "string"
+          },
+          "titreRequestDto": {
+            "maxLength": 30,
+            "minLength": 2,
+            "type": "string"
+          },
+          "descriptionRequestDto": {
+            "type": "string"
+          }
+        }
+      },
+      "ProjetRequest": {
+        "required": [
+          "coutRequestDto",
+          "descriptionRequestDto",
+          "endDateRequestDto",
+          "startDateRequestDto",
+          "structureIdRequestDto",
+          "titreRequestDto"
+        ],
+        "type": "object",
+        "properties": {
+          "idRequestDto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "referenceRequestDto": {
+            "type": "string"
+          },
+          "titreRequestDto": {
+            "maxLength": 30,
+            "minLength": 2,
+            "type": "string"
+          },
+          "descriptionRequestDto": {
+            "type": "string"
+          },
+          "coutRequestDto": {
+            "type": "number",
+            "format": "double"
+          },
+          "startDateRequestDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDateRequestDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "structureIdRequestDto": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "FactureRequest": {
+        "required": [
+          "contactInformationRequestDto",
+          "contratIdRequestDto",
+          "coutRequestDto",
+          "descriptionRequestDto",
+          "endDateRequestDto",
+          "informationFacturationRequestDto",
+          "startDateRequestDto",
+          "statusRequestDto",
+          "termePaimentRequestDto",
+          "titreRequestDto"
+        ],
+        "type": "object",
+        "properties": {
+          "idRequestDto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "referenceRequestDto": {
+            "type": "string"
+          },
+          "titreRequestDto": {
+            "maxLength": 30,
+            "minLength": 2,
+            "type": "string"
+          },
+          "descriptionRequestDto": {
+            "type": "string"
+          },
+          "coutRequestDto": {
+            "type": "number",
+            "format": "double"
+          },
+          "startDateRequestDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDateRequestDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "statusRequestDto": {
+            "type": "string"
+          },
+          "termePaimentRequestDto": {
+            "type": "string"
+          },
+          "informationFacturationRequestDto": {
+            "type": "string"
+          },
+          "contactInformationRequestDto": {
+            "type": "string"
+          },
+          "contratIdRequestDto": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "FactureResponse": {
+        "type": "object",
+        "properties": {
+          "idResponseDto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "referenceResponseDto": {
+            "type": "string"
+          },
+          "titreResponseDto": {
+            "type": "string"
+          },
+          "descriptionResponseDto": {
+            "type": "string"
+          },
+          "coutResponseDto": {
+            "type": "number",
+            "format": "double"
+          },
+          "startDateResponseDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDateResponseDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "statusResponseDto": {
+            "type": "string"
+          },
+          "termePaimentResponseDto": {
+            "type": "string"
+          },
+          "informationFacturationResponseDto": {
+            "type": "string"
+          },
+          "contactInformationResponseDto": {
+            "type": "string"
+          },
+          "contratIdResponseDto": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ContratRequest": {
+        "required": [
+          "appelOffreIdRequestDto",
+          "clauseDeResiliasionRequestDto",
+          "coutRequestDto",
+          "descriptionRequestDto",
+          "endDateRequestDto",
+          "livrablesRequestDto",
+          "milestonesRequestDto",
+          "startDateRequestDto",
+          "termPaimentRequestDto",
+          "titreRequestDto",
+          "traveauxRequestDto"
+        ],
+        "type": "object",
+        "properties": {
+          "idRequestDto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "referenceRequestDto": {
+            "type": "string"
+          },
+          "titreRequestDto": {
+            "maxLength": 30,
+            "minLength": 2,
+            "type": "string"
+          },
+          "descriptionRequestDto": {
+            "type": "string"
+          },
+          "coutRequestDto": {
+            "type": "number",
+            "format": "double"
+          },
+          "startDateRequestDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDateRequestDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "traveauxRequestDto": {
+            "type": "string"
+          },
+          "livrablesRequestDto": {
+            "type": "string"
+          },
+          "milestonesRequestDto": {
+            "type": "string"
+          },
+          "termPaimentRequestDto": {
+            "type": "string"
+          },
+          "clauseDeResiliasionRequestDto": {
+            "type": "string"
+          },
+          "appelOffreIdRequestDto": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "AuthenticationRequest": {
+        "required": [
+          "emailRequestDto",
+          "motDePassRequestDto"
+        ],
+        "type": "object",
+        "properties": {
+          "emailRequestDto": {
+            "type": "string"
+          },
+          "motDePassRequestDto": {
+            "type": "string"
+          }
+        }
+      },
+      "RegistrationRequest": {
+        "required": [
+          "emailRequestDto",
+          "motDePasseRequestDto",
+          "nomRequestDto",
+          "prenomRequestDto"
+        ],
+        "type": "object",
+        "properties": {
+          "prenomRequestDto": {
+            "pattern": "^[a-zA-ZÀ-ÿ-]{1,15}$",
+            "type": "string"
+          },
+          "nomRequestDto": {
+            "pattern": "^[a-zA-ZÀ-ÿ ]{1,20}$",
+            "type": "string"
+          },
+          "emailRequestDto": {
+            "type": "string"
+          },
+          "motDePasseRequestDto": {
+            "type": "string"
+          }
+        }
+      },
+      "AuthenticationResponse": {
+        "type": "object",
+        "properties": {
+          "tokenResponseDto": {
+            "type": "string"
+          }
+        }
+      },
+      "AppelOffreRequest": {
+        "required": [
+          "contactInformationRequestDto",
+          "coutRequestDto",
+          "descriptionRequestDto",
+          "endDateRequestDto",
+          "livrablesRequestDto",
+          "projetIdRequestDto",
+          "soumissionairesRequestDto",
+          "startDateRequestDto",
+          "titreRequestDto",
+          "traveauxRequestDto"
+        ],
+        "type": "object",
+        "properties": {
+          "idRequestDto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "referenceRequestDto": {
+            "type": "string"
+          },
+          "titreRequestDto": {
+            "maxLength": 30,
+            "minLength": 2,
+            "type": "string"
+          },
+          "descriptionRequestDto": {
+            "type": "string"
+          },
+          "coutRequestDto": {
+            "type": "number",
+            "format": "double"
+          },
+          "startDateRequestDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDateRequestDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "statusRequestDto": {
+            "type": "string"
+          },
+          "traveauxRequestDto": {
+            "type": "string"
+          },
+          "livrablesRequestDto": {
+            "type": "string"
+          },
+          "soumissionairesRequestDto": {
+            "type": "string"
+          },
+          "contactInformationRequestDto": {
+            "type": "string"
+          },
+          "projetIdRequestDto": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "StructureResponse": {
+        "type": "object",
+        "properties": {
+          "idResponseDto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "referenceResponseDto": {
+            "type": "string"
+          },
+          "titreResponseDto": {
+            "type": "string"
+          },
+          "descriptionResponseDto": {
+            "type": "string"
+          }
+        }
+      },
+      "PageResponseProjetResponse": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjetResponse"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ProjetResponse": {
+        "type": "object",
+        "properties": {
+          "idResponseDto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "referenceResponseDto": {
+            "type": "string"
+          },
+          "titreResponseDto": {
+            "type": "string"
+          },
+          "descriptionResponseDto": {
+            "type": "string"
+          },
+          "coutResponseDto": {
+            "type": "number",
+            "format": "double"
+          },
+          "startDateResponseDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDateResponseDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "structureIdResponseDto": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PageResponseFactureResponse": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FactureResponse"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ContratResponse": {
+        "type": "object",
+        "properties": {
+          "idResponseDto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "referenceResponseDto": {
+            "type": "string"
+          },
+          "titreResponseDto": {
+            "type": "string"
+          },
+          "descriptionResponseDto": {
+            "type": "string"
+          },
+          "coutResponseDto": {
+            "type": "number",
+            "format": "double"
+          },
+          "startDateResponseDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDateResponseDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "traveauxResponseDto": {
+            "type": "string"
+          },
+          "livrablesResponseDto": {
+            "type": "string"
+          },
+          "milestonesResponseDto": {
+            "type": "string"
+          },
+          "termPaimentResponseDto": {
+            "type": "string"
+          },
+          "clauseDeResiliasionResponseDto": {
+            "type": "string"
+          },
+          "appelOffreIdResponseDto": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PageResponseContratResponse": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContratResponse"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AppelOffreResponse": {
+        "type": "object",
+        "properties": {
+          "idResponseDto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "referenceResponseDto": {
+            "type": "string"
+          },
+          "titreResponseDto": {
+            "type": "string"
+          },
+          "descriptionResponseDto": {
+            "type": "string"
+          },
+          "coutResponseDto": {
+            "type": "number",
+            "format": "double"
+          },
+          "startDateResponseDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDateResponseDto": {
+            "type": "string",
+            "format": "date"
+          },
+          "statusResponseDto": {
+            "type": "string"
+          },
+          "traveauxResponseDto": {
+            "type": "string"
+          },
+          "livrablesResponseDto": {
+            "type": "string"
+          },
+          "soumissionairesResponseDto": {
+            "type": "string"
+          },
+          "contactInformationResponseDto": {
+            "type": "string"
+          },
+          "projetIdResponseDto": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PageResponseAppelOffreResponse": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AppelOffreResponse"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "description": "JWT auth description",
+        "in": "header",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

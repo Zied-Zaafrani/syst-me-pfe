@@ -1,0 +1,61 @@
+services:
+  postgres:
+    container_name: postgres-sql-gesprj
+    image: postgres
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: systeme_gestion_projet_2
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - 5432:5432
+    networks:
+      - spring-demo
+    restart: unless-stopped
+  mail-dev:
+    container_name: mail-dev-gesprj
+    image: maildev/maildev
+    ports:
+      - 1080:1080
+      - 1025:1025
+  #project-management-api:
+    # container_name: project-management-api
+    #image: gesprj/project-management-api:1.0.1
+      #ports:
+      #- 8088:8088
+      #networks:
+      #- spring-demo
+      #depends_on:
+      #- postgres
+    # project-management-ui:
+    # container_name: project-management-ui
+      # image: gesprj/project-management-ui:1.0.0
+      #ports:
+      #- 8080:80
+      #networks:
+      #- spring-demo
+      #depends_on:
+      #- project-management-api"
+
+  keycloak:
+    container_name: keycloak-gesprj
+    image: quay.io/keycloak/keycloak:24.0.2
+    ports:
+      - 9091:8080
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    networks:
+      - spring-demo
+    command:
+      - "start-dev"
+
+
+networks:
+  spring-demo:
+    driver: bridge
+volumes:
+  postgres:
+    driver: local

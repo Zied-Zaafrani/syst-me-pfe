@@ -1,0 +1,60 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/systeme_gestion_projet_2
+    username: username
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+
+  mail:
+    host: localhost
+    port: 1025
+    username: zied
+    password: zied
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enabled: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+
+  #mail:
+    # host: smtp.gmail.com
+    #port: 465
+    #username: ziededucation@gmail.com
+    #password: zied27djejamoncef
+      #properties:
+      #mail:
+      # smtp:
+      #   auth: true
+      # ssl:
+      #   enable: true
+      #   trust: "*"
+      # starttls:
+    #   enabled: true
+    #protocol: smtp
+application:
+  security:
+    jwt:
+      secret-key: 64edb97b990ecf22b4c33acbb70f713565e1daa77f70ddc607abaf75488c9362
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
+server:
+  port: 8088
